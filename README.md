@@ -1,2 +1,2 @@
-# AoC-OpenAI
- OpenAI guided solutions for Advent of Code
+# AoC-Github-Copilot
+ Github Copilot guided solutions for Advent of Code

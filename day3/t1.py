@@ -115,8 +115,6 @@ def get_oxygen_generator_rating(data):
     return int(''.join(data[0]),2)*int(''.join(data2[0]),2)
 
 
-    return d, d2, d*d2
-
 def read_input(inputfile):
     with open(inputfile, 'r') as f:
         data = f.read().splitlines()

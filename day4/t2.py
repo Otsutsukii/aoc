@@ -59,8 +59,7 @@ def solution1(line,data):
     # set the board to the number of the row or column
     winners = []
     score = []
-    data = np.array(data)
-    marked = np.full(data.shape,-1.0)
+    data = np.array(data).astype('float')
     for num in line:
         # find the board that has the number
         locations = np.where(data == num)
@@ -68,17 +67,12 @@ def solution1(line,data):
         for board,row,col in zip(*locations):
             if board not in winners:
                 # set the board to the number of the row or column
-                marked[board,row,col] = np.nan
+                data[board,row,col] = np.nan
                 # find the row or col that does not countain nan 
                 # if the row or col is complete, then the board is a winner
-                if np.all(np.isnan(marked[board][row])) or np.all(np.isnan(marked[board].T[col]) ):
+                if np.all(np.isnan(data[board][row])) or np.all(np.isnan(data[board].T[col]) ):
                     winners.append(board)
-                    #compute score of winner
-                    #replace all nan value of the marked[board] with 0
-                    marked[board] = np.where(np.isnan(marked[board]),+0,marked[board])
-                    marked[board] = np.where(marked[board]==-1,1,marked[board])
-                    print(marked[board])
-                    score.append(np.sum(np.multiply(data[board],marked[board]))*num)
+                    score.append(np.nansum(data[board])*num)
     return score
 
 #-----------------------------------------------------------------------------------------------------------------------
